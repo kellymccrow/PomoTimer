@@ -64,10 +64,12 @@ const Timer = (props) => {
     ctx.setShowSettings(true);
   };
 
+  const timerValue = secondsLeft * 60;
+
   return (
     <div className={styles['timer-container']}>
       <CircularProgressbar
-        value={45}
+        value={timerValue}
         maxValue={60}
         text={45}
         strokeWidth={6}

@@ -2,7 +2,7 @@ import styles from './SettingsButton.module.css';
 
 const SettingsButton = (props) => {
   return (
-    <button className={styles['settings-button']}>
+    <button className={styles['settings-button']} onClick={props.onClick}>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         className={styles['settings-icon']}

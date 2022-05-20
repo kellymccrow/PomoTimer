@@ -1,0 +1,22 @@
+.settings-button {
+  background: transparent;
+  border: #feedd6 solid 2px;
+  outline: none;
+  border-radius: 50px;
+  width: 66%;
+  margin-top: 50px;
+  color: #feedd6;
+  font-size: 1em;
+  /* font-weight: bold; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.settings-icon {
+  width: 30px;
+}

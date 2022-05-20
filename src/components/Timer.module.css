@@ -1,7 +1,9 @@
-.Timer__container {
+.timer-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   width: 40%;
+  max-width: 360px;
   margin: auto;
   margin-top: 50px;
 }

@@ -1,7 +1,7 @@
-import styles from './StartButton.module.css';
+import styles from './Button.module.css';
 
-const StartButton = () => {
-  return <button></button>;
+const StartButton = (props) => {
+  return <button className={styles.button}>Start</button>;
 };
 
 export default StartButton;

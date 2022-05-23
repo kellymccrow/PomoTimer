@@ -55,7 +55,7 @@ const Timer = (props) => {
         return switchMode();
       }
       countdown();
-    }, 200);
+    }, 1000);
 
     return () => clearInterval(timerInterval);
   }, [ctx]);

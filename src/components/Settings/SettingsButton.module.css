@@ -4,10 +4,10 @@
   outline: none;
   border-radius: 50px;
   width: 66%;
-  margin-top: 50px;
+  margin: auto;
+  margin-top: 100px;
   color: #feedd6;
   font-size: 1em;
-  /* font-weight: bold; */
   display: flex;
   justify-content: space-between;
   align-items: center;

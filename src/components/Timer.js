@@ -15,7 +15,7 @@ import 'react-circular-progressbar/dist/styles.css';
 const Timer = (props) => {
   const ctx = useContext(SettingsContext);
 
-  const [isPaused, setIsPause] = useState(true);
+  const [isPaused, setIsPaused] = useState(true);
   const [mode, setMode] = useState('work'); // work/break/null
   const [secondsLeft, setSecondsLeft] = useState(0);
 
@@ -27,25 +27,29 @@ const Timer = (props) => {
     setSecondsLeft(ctx.workMinutes * 60);
   };
 
-  const switchMode = () => {
-    const nextMode = modeRef.current === 'work' ? 'break' : 'work';
-    const nextSeconds =
-      nextMode === 'work' ? ctx.workMinutes * 60 : ctx.breakMinutes * 60;
-
-    setMode(nextMode);
-    modeRef.current = nextMode;
-
-    setSecondsLeft(nextSeconds);
-    secondsLeftRef.current = nextSeconds;
-  };
-
   const countdown = () => {
     secondsLeftRef.current--;
     setSecondsLeft(secondsLeftRef.current);
   };
 
   useEffect(() => {
-    initTimer();
+    const switchMode = () => {
+      setIsPaused(true);
+      isPausedRef.current = true;
+
+      const nextMode = modeRef.current === 'work' ? 'break' : 'work';
+      const nextSeconds =
+        nextMode === 'work' ? ctx.workMinutes * 60 : ctx.breakMinutes * 60;
+
+      setMode(nextMode);
+      modeRef.current = nextMode;
+
+      setSecondsLeft(nextSeconds);
+      secondsLeftRef.current = nextSeconds;
+    };
+
+    secondsLeftRef.current = ctx.workMinutes * 60;
+    setSecondsLeft(secondsLeftRef.current);
 
     const timerInterval = setInterval(() => {
       if (isPausedRef.current) {
@@ -55,23 +59,39 @@ const Timer = (props) => {
         return switchMode();
       }
       countdown();
-    }, 1000);
+    }, 200);
 
-    return clearInterval(timerInterval);
+    return () => clearInterval(timerInterval);
   }, [ctx]);
 
   const handleSettingsClick = () => {
     ctx.setShowSettings(true);
   };
 
-  const timerValue = secondsLeft * 60;
+  const handlePauseClick = () => {
+    setIsPaused(true);
+    isPausedRef.current = true;
+  };
+
+  const handleStartClick = () => {
+    setIsPaused(false);
+    isPausedRef.current = false;
+  };
+
+  const totalSeconds =
+    mode === 'work' ? ctx.workMinutes * 60 : ctx.breakMinutes * 60;
+  const timerValue = Math.round((secondsLeft / totalSeconds) * 100);
+
+  const minutes = Math.floor(secondsLeft / 60);
+  let seconds = secondsLeft % 60;
+  if (seconds < 10) seconds = '0' + seconds;
+  const timerText = minutes + ':' + seconds;
 
   return (
     <div className={styles['timer-container']}>
       <CircularProgressbar
         value={timerValue}
-        maxValue={60}
-        text={45}
+        text={timerText}
         strokeWidth={6}
         styles={buildStyles({
           strokeLinecap: 'butt',
@@ -80,7 +100,11 @@ const Timer = (props) => {
           textColor: '#feedd6',
         })}
       />
-      {isPaused ? <StartButton /> : <StopButton />}
+      {isPaused ? (
+        <StartButton onClick={handleStartClick} />
+      ) : (
+        <StopButton onClick={handlePauseClick} />
+      )}
       <SettingsButton onClick={handleSettingsClick} />
     </div>
   );

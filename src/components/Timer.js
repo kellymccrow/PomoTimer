@@ -23,10 +23,6 @@ const Timer = (props) => {
   const isPausedRef = useRef(isPaused);
   const modeRef = useRef(mode);
 
-  const initTimer = () => {
-    setSecondsLeft(ctx.workMinutes * 60);
-  };
-
   const countdown = () => {
     secondsLeftRef.current--;
     setSecondsLeft(secondsLeftRef.current);
@@ -87,25 +83,32 @@ const Timer = (props) => {
   if (seconds < 10) seconds = '0' + seconds;
   const timerText = minutes + ':' + seconds;
 
+  const workMode = mode === 'work';
+
   return (
-    <div className={styles['timer-container']}>
-      <CircularProgressbar
-        value={timerValue}
-        text={timerText}
-        strokeWidth={6}
-        styles={buildStyles({
-          strokeLinecap: 'butt',
-          pathColor: '#feedd6',
-          trailColor: '#ffbf69',
-          textColor: '#feedd6',
-        })}
-      />
-      {isPaused ? (
-        <StartButton onClick={handleStartClick} />
-      ) : (
-        <StopButton onClick={handlePauseClick} />
-      )}
-      <SettingsButton onClick={handleSettingsClick} />
+    <div
+      className={styles['timer-background']}
+      style={{ backgroundColor: workMode ? '#ff9f1c' : '#2ec4b6' }}
+    >
+      <div className={styles['timer-container']}>
+        <CircularProgressbar
+          value={timerValue}
+          text={timerText}
+          strokeWidth={6}
+          styles={buildStyles({
+            strokeLinecap: 'butt',
+            pathColor: workMode ? '#feedd6' : '#cbf3f0',
+            trailColor: workMode ? '#ffbf69' : '#7ddcd3',
+            textColor: workMode ? '#feedd6' : '#cbf3f0',
+          })}
+        />
+        {isPaused ? (
+          <StartButton onClick={handleStartClick} workMode={workMode} />
+        ) : (
+          <StopButton onClick={handlePauseClick} workMode={workMode} />
+        )}
+        <SettingsButton onClick={handleSettingsClick} />
+      </div>
     </div>
   );
 };

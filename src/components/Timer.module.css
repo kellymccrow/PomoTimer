@@ -1,3 +1,9 @@
+.timer-background {
+  height: 100vh;
+  width: 100vw;
+  padding-top: 50px;
+}
+
 .timer-container {
   display: flex;
   justify-content: center;
@@ -5,5 +11,4 @@
   width: 40%;
   max-width: 360px;
   margin: auto;
-  margin-top: 50px;
 }

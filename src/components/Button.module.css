@@ -4,11 +4,18 @@
   text-transform: uppercase;
   padding: 10px 20px;
   font-size: 1.5em;
-  margin-top: 30px;
+  display: block;
+  margin: auto;
+  margin-top: 40px;
   letter-spacing: 1px;
   font-weight: bold;
   background-color: #feedd6;
   color: #ff9f1c;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.buttonBreak {
+  background-color: #cbf3f0;
+  color: #2ec4b6;
 }

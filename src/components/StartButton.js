@@ -2,7 +2,10 @@ import styles from './Button.module.css';
 
 const StartButton = (props) => {
   return (
-    <button className={styles.button} onClick={props.onClick}>
+    <button
+      className={`${styles.button} ${!props.workMode && styles.buttonBreak}`}
+      onClick={props.onClick}
+    >
       Start
     </button>
   );

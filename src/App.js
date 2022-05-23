@@ -23,9 +23,7 @@ function App() {
         setShowSettings,
       }}
     >
-      <div className='App' style={{ backgroundColor: '#ff9f1c' }}>
-        {showSettings ? <Settings /> : <Timer />}
-      </div>
+      {showSettings ? <Settings /> : <Timer />}
     </SettingsContext.Provider>
   );
 }

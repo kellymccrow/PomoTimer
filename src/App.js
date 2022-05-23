@@ -11,7 +11,6 @@ function App() {
   const [showSettings, setShowSettings] = useState(false);
   const [workMinutes, setWorkMinutes] = useState(45);
   const [breakMinutes, setBreakMinutes] = useState(15);
-  const [appMode, setAppMode] = useState('work');
 
   return (
     <SettingsContext.Provider
@@ -22,8 +21,6 @@ function App() {
         setBreakMinutes,
         showSettings,
         setShowSettings,
-        appMode,
-        setAppMode,
       }}
     >
       <div className='App' style={{ backgroundColor: '#ff9f1c' }}>

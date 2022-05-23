@@ -17,6 +17,11 @@
   cursor: pointer;
 }
 
+.settings-button-break {
+  color: #cbf3f0;
+  border-color: #cbf3f0;
+}
+
 .settings-icon {
   width: 30px;
 }

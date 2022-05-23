@@ -2,12 +2,17 @@ import styles from './SettingsButton.module.css';
 
 const SettingsButton = (props) => {
   return (
-    <button className={styles['settings-button']} onClick={props.onClick}>
+    <button
+      className={`${styles['settings-button']} ${
+        !props.workMode && styles['settings-button-break']
+      }`}
+      onClick={props.onClick}
+    >
       <svg
         xmlns='http://www.w3.org/2000/svg'
         className={styles['settings-icon']}
         viewBox='0 0 20 20'
-        fill='#feedd6'
+        fill={props.workMode ? '#feedd6' : '#cbf3f0'}
       >
         <path
           fillRule='evenodd'

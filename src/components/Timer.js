@@ -107,7 +107,7 @@ const Timer = (props) => {
         ) : (
           <StopButton onClick={handlePauseClick} workMode={workMode} />
         )}
-        <SettingsButton onClick={handleSettingsClick} />
+        <SettingsButton onClick={handleSettingsClick} workMode={workMode} />
       </div>
     </div>
   );
